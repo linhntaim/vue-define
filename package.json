@@ -1,0 +1,45 @@
+{
+    "name": "vue-define",
+    "version": "1.0.0",
+    "description": "Manage environment variables & configurations in Vue application.",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "babel index.js --out-dir ./dist --delete-dir-on-start --minified --source-maps && babel src --out-dir ./dist/src --minified --source-maps",
+        "test": "mocha --require @babel/register"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/linhntaim/vue-define.git"
+    },
+    "keywords": [
+        "vue",
+        "vuejs",
+        "vue-js",
+        "application",
+        "plugin",
+        "enviroment",
+        "variables",
+        "config",
+        "configuration",
+        "define",
+        "definition",
+        "manage"
+    ],
+    "author": "Nguyen Tuan Linh <linhnt.aim@outlook.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/linhntaim/vue-define/issues"
+    },
+    "homepage": "https://github.com/linhntaim/vue-define#readme",
+    "dependencies": {
+        "dotenv-conversion": "^1.3.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.7.5",
+        "@babel/core": "^7.7.5",
+        "@babel/preset-env": "^7.7.6",
+        "@babel/register": "^7.7.4",
+        "chai": "^4.2.0",
+        "mocha": "^6.2.2"
+    }
+}
