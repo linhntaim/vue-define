@@ -48,8 +48,10 @@ class Define_manager {
         this.trySet(Define, name, value, force)
     }
 
-    trySet(define, name, value, force = true) {
-        const [name1, name2] = name.split('.', 2)
+    trySet(define, name, value, force) {
+        const names = name.split('.'),
+            name1 = names.shift(),
+            name2 = names.join('.')
 
         const check = () => {
             if (!define.hasOwnProperty(name1)) {

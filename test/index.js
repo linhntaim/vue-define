@@ -1,9 +1,10 @@
 import {default as install, DefineManager, Define, getenv} from '../index'
+import mocha from 'mocha'
+import chai from 'chai'
 
-const mocha = require('mocha')
-const chai = require('chai')
 const describe = mocha.describe
 const it = mocha.it
+const expect = chai.expect
 chai.should()
 
 describe('vue-define', function () {
@@ -27,6 +28,7 @@ describe('vue-define', function () {
                 vue.$define.should.deep.equal(Define)
                 vue.$define.should.deep.include(expected)
                 getenv().should.deep.include(expected)
+                getenv('VUE_APP_DEFINITION').should.deep.equal('definition')
 
                 done()
             })
@@ -196,6 +198,16 @@ describe('vue-define', function () {
                 })
             })
 
+            it('import method (not exist)', function (done) {
+                const input = './input.defines.not_exist'
+
+                DefineManager.import(import(input)).then(function () {
+                    done('existed')
+                }).catch(function (e) {
+                    done()
+                })
+            })
+
             it('get method', function (done) {
                 const input = {
                     e: 'e',
@@ -205,9 +217,30 @@ describe('vue-define', function () {
 
                 Define.should.deep.include(input)
 
-                const output = DefineManager.get('e')
-                output.should.be.a('string')
-                output.should.deep.equal('e')
+                const output1 = DefineManager.get('e')
+                output1.should.be.a('string')
+                output1.should.deep.equal('e')
+
+                const output2 = DefineManager.get()
+                output2.should.be.a('object')
+                output2.should.deep.include({
+                    e: 'e',
+                })
+
+                done()
+            })
+
+            it('get method (not exist)', function (done) {
+                const input = {
+                    e: 'e',
+                }
+
+                DefineManager.append(input)
+
+                Define.should.deep.include(input)
+
+                const output = DefineManager.get('not_existed_configuration')
+                expect(output).to.be.a('null')
 
                 done()
             })
@@ -237,8 +270,6 @@ describe('vue-define', function () {
             })
 
             it('set method', function (done) {
-                DefineManager.append()
-
                 DefineManager.set('g', 'g')
 
                 Define.should.deep.include({
@@ -253,8 +284,6 @@ describe('vue-define', function () {
             })
 
             it('set method (hierarchy)', function (done) {
-                DefineManager.append()
-
                 DefineManager.set('h', {
                     a: 'ha',
                 })
@@ -279,8 +308,6 @@ describe('vue-define', function () {
             })
 
             it('set method (hierarchy 2)', function (done) {
-                DefineManager.append()
-
                 DefineManager.set('i.a', 'ia')
 
                 Define.should.deep.include({
@@ -303,8 +330,6 @@ describe('vue-define', function () {
             })
 
             it('set method (hierarchy concat)', function (done) {
-                DefineManager.append()
-
                 DefineManager.set('j.a', 'ja')
                 DefineManager.set('j.b', 'jb')
 
@@ -329,6 +354,53 @@ describe('vue-define', function () {
                 const output3 = DefineManager.get('j.b')
                 output3.should.be.a('string')
                 output3.should.deep.equal('jb')
+
+                done()
+            })
+
+            it('set method (override: force and not force)', function (done) {
+                DefineManager.set('k', 'k')
+                DefineManager.set('k', {a: 'ka'})
+                DefineManager.set('k.a', {a: 'kaa'}, false)
+
+                Define.should.deep.include({
+                    k: {
+                        a: 'ka',
+                    },
+                })
+
+                const output = DefineManager.get('k')
+                output.should.be.a('object')
+                output.should.deep.equal({
+                    a: 'ka',
+                })
+
+                done()
+            })
+
+            it('set method (override - append hierarchically: force and not force)', function (done) {
+                DefineManager.set('l.a', 'la')
+                DefineManager.set('l.a.a', 'laa')
+                DefineManager.set('l.a.b', 'lab')
+                DefineManager.set('l.a.b.a', 'laba', false)
+
+                Define.should.deep.include({
+                    l: {
+                        a: {
+                            a: 'laa',
+                            b: 'lab',
+                        },
+                    },
+                })
+
+                const output = DefineManager.get('l')
+                output.should.be.a('object')
+                output.should.deep.equal({
+                    a: {
+                        a: 'laa',
+                        b: 'lab',
+                    },
+                })
 
                 done()
             })

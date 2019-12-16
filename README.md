@@ -1,6 +1,9 @@
 # vue-define
 
 [![NPM version](https://img.shields.io/npm/v/vue-define.svg?style=flat-square)](https://www.npmjs.com/package/vue-define)
+[![Travis (.org)](https://img.shields.io/travis/linhntaim/vue-define?style=flat-square)](https://travis-ci.org/linhntaim/vue-define)
+[![Coveralls github](https://img.shields.io/coveralls/github/linhntaim/vue-define?style=flat-square)](https://coveralls.io/github/linhntaim/vue-define)
+[![NPM](https://img.shields.io/npm/l/vue-define?style=flat-square)](https://github.com/linhntaim/vue-define/blob/master/LICENSE)
 
 Manage environment variables & configurations in Vue application.
 
@@ -106,7 +109,7 @@ export default {
         }
         console.log(this.$defineManager.get('VUE_APP_DATA.vehicles')) // (object) {car: 'car', bike: 'bike'}
         console.log(this.$defineManager.get('VUE_APP_DATA.vehicles.car')) // (string) 'car'
-        console.log(this.$defineManager.get('VUE_APP_DATA.vehicles.bike')) // string 'bike'
+        console.log(this.$defineManager.get('VUE_APP_DATA.vehicles.bike')) // (string) 'bike'
         
         this.$defineManager.set('custom.value', 'value')
         console.log(this.$define.custom) // (object) {value: 'value'}
@@ -165,7 +168,7 @@ Define.VUE_APP_DATA.vehices = {
 }
 console.log(DefineManager.get('VUE_APP_DATA.vehicles')) // (object) {car: 'car', bike: 'bike'}
 console.log(DefineManager.get('VUE_APP_DATA.vehicles.car')) // (string) 'car'
-console.log(DefineManager.get('VUE_APP_DATA.vehicles.bike')) // string 'bike'
+console.log(DefineManager.get('VUE_APP_DATA.vehicles.bike')) // (string) 'bike'
 
 DefineManager.set('custom.value', 'value')
 console.log(Define.custom) // (object) {value: 'value'}
