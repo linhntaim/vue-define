@@ -11,7 +11,7 @@ Powered by [dotenv-conversion](https://github.com/linhntaim/dotenv-conversion).
 
 ## Install
 
-```bash
+```shell script
 npm install vue-define
 ```
 
@@ -50,13 +50,15 @@ new Vue({...}).$mount('#app')
   
   To define some pre-configurations if wanted. 
   
-  Eg: `{APP_TITLE: 'My Website', APP_DESCRIPTION': 'A sample page of mine'}`
+  Eg: `{APP_TITLE: 'My Website', APP_DESCRIPTION': 'A sample page of mine'}`.
   
 - **`options.dotenvConversionConfigOptions`**
 
   *(optional)* Must be an object.
   
-  To use with features of `dotenv-conversion`. 
+  To use with features of `dotenv-conversion`.
+  
+  Eg: `{specs: { ... }, override: { ... }, prevents: { ... }}`.
 
   See [`dotenv-conversion`](https://github.com/linhntaim/dotenv-conversion#features).
 
@@ -66,7 +68,7 @@ new Vue({...}).$mount('#app')
 
 Example of .env file in Vue application:
 
-```env
+```shell script
 # .env file
 VUE_APP_TITLE='My Website'
 VUE_APP_DEBUG=true
