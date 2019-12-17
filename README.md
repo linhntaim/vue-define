@@ -38,16 +38,24 @@ new Vue({...}).$mount('#app')
 
 **Options**
 
+- **`options`**
+
+  *(optional)* Must be an object.
+  
+  Has attributes of `defines` and `dotenvConversionConfigOptions`.
+
 - **`options.defines`**
 
-  *(Optional)*
+  *(optional)* Must be an object.
   
-  To define some pre-configurations if wanted.  
+  To define some pre-configurations if wanted. 
   
-- **`options.dotenvConversionConfig`**
+  Eg: `{APP_TITLE: 'My Website', APP_DESCRIPTION': 'A sample page of mine'}`
+  
+- **`options.dotenvConversionConfigOptions`**
 
-  *(Optional)*
-
+  *(optional)* Must be an object.
+  
   To use with features of `dotenv-conversion`. 
 
   See [`dotenv-conversion`](https://github.com/linhntaim/dotenv-conversion#features).

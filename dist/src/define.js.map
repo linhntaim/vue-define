@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/define.js"],"names":["Define"],"mappings":"gGAAA,GAAMA,CAAAA,MAAM,CAAG,EAAf,C,aAEeA,M","sourcesContent":["const Define = {}\r\n\r\nexport default Define"],"file":"define.js"}

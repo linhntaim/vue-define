@@ -1,4 +1,4 @@
-import {default as install, DefineManager, Define, getenv} from '../index'
+import {default as install, DefineManager, Define, getenv} from '../src'
 import mocha from 'mocha'
 import chai from 'chai'
 
@@ -41,7 +41,7 @@ describe('vue-define', function () {
                     VUE_APP_DEFINITION_JSON_OVERRIDE: '{"foo":"bar"}',
                     VUE_APP_DEFINITION_BOOL_PREVENT: 'true',
                 }
-                const dotEnvConversionConfig = {
+                const dotEnvConversionConfigOptions = {
                     specs: {
                         VUE_APP_DEFINITION_NUMBER_SPEC_TO_BOOL: 'bool',
                         VUE_APP_DEFINITION_RAW_SPEC_TO_CUSTOM_UPPERCASE(value) {
@@ -84,7 +84,7 @@ describe('vue-define', function () {
                 }
                 install(Vue, {
                     defines: inputDefines,
-                    dotEnvConversionConfig: dotEnvConversionConfig,
+                    dotEnvConversionConfigOptions: dotEnvConversionConfigOptions,
                 })
                 const vue = new Vue()
 

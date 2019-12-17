@@ -1,6 +1,6 @@
 import Define from './define'
 
-class Define_manager {
+class DefineManager {
     append(...defines) {
         let define
         while ((define = defines.shift())) {
@@ -84,4 +84,4 @@ class Define_manager {
     }
 }
 
-export default new Define_manager()
+export default new DefineManager()
