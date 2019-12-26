@@ -32,16 +32,16 @@ class DefineManager {
         })
     }
 
-    get(name = null) {
-        return name ? this.tryGet(Define, name) : Define
+    get(name = null, def = null) {
+        return name ? this.tryGet(Define, name, def) : Define
     }
 
-    tryGet(define, name) {
+    tryGet(define, name, def) {
         const [name1, name2] = name.split('.', 2)
         if (define.hasOwnProperty(name1)) {
-            return name2 ? this.tryGet(define[name1], name2) : define[name1]
+            return name2 ? this.tryGet(define[name1], name2, def) : define[name1]
         }
-        return null
+        return def
     }
 
     set(name, value, force = true) {

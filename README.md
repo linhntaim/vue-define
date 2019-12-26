@@ -105,6 +105,10 @@ export default {
         console.log(this.$define.VUE_APP_DATA) // (object) {foo: 'bar'}
         console.log(this.$defineManager.get('VUE_APP_DEBUG.foo')) // (string) 'bar'
         console.log(this.$define.VUE_APP_DATA.foo) // (string) 'bar'
+        
+        console.log(this.$defineManager.get('VUE_APP_NOT_SET')) // null
+        console.log(this.$defineManager.get('VUE_APP_NOT_SET', 'default_value')) // (string) 'default_value'
+        console.log(this.$define.VUE_APP_NOT_SET) // undefined
 
         // Setting
 
@@ -164,6 +168,10 @@ console.log(DefineManager.get('VUE_APP_DATA')) // (object) {foo: 'bar'}
 console.log(Define.VUE_APP_DATA) // (object) {foo: 'bar'}
 console.log(DefineManager.get('VUE_APP_DEBUG.foo')) // (string) 'bar'
 console.log(Define.VUE_APP_DATA.foo) // (string) 'bar'
+
+console.log(DefineManager.get('VUE_APP_NOT_SET')) // null
+console.log(DefineManager.get('VUE_APP_NOT_SET', 'default_value')) // (string) 'default_value'
+console.log(Define.VUE_APP_NOT_SET) // undefined
 
 // Setting
 

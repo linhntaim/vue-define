@@ -29,6 +29,8 @@ describe('vue-define', function () {
                 vue.$define.should.deep.include(expected)
                 getenv().should.deep.include(expected)
                 getenv('VUE_APP_DEFINITION').should.deep.equal('definition')
+                expect(getenv('VUE_APP_NOT_SET')).to.be.a('null')
+                getenv('VUE_APP_NOT_SET', '').should.deep.equal('')
 
                 done()
             })
@@ -265,6 +267,16 @@ describe('vue-define', function () {
                 const output2 = DefineManager.get('f.a')
                 output2.should.be.a('string')
                 output2.should.deep.equal('fa')
+
+                done()
+            })
+
+            it('get method (not set)', function (done) {
+                const output1 = DefineManager.get('not_set')
+                expect(output1).to.be.a('null')
+
+                const output2 = DefineManager.get('not_set', '')
+                output2.should.deep.equal('')
 
                 done()
             })
