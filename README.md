@@ -11,7 +11,7 @@ Powered by [dotenv-conversion](https://github.com/linhntaim/dotenv-conversion).
 
 ## Install
 
-```shell script
+```bash
 npm install vue-define
 ```
 
@@ -68,7 +68,7 @@ new Vue({...}).$mount('#app')
 
 Example of .env file in Vue application:
 
-```shell script
+```dotenv
 # .env file
 VUE_APP_TITLE='My Website'
 VUE_APP_DEBUG=true
